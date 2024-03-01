@@ -1,5 +1,6 @@
 import math
-class Player():
+import random
+class Player:
     def __init__(self,name,deck):
         self.name=name
     def getName(self):
@@ -39,7 +40,10 @@ def dealCards(board,round,listPlayers,numPlayer):
     while i <= numPlayer:
         # Repartimos el número de cartas (aleatoriamente) según la ronda
         deck = []
-        while length(deck) < round:
-            deck.append(board.globalDeck[random.randint(1,lenght(board.globalDeck))])
-
+        while len(deck) < round:
+            dealtCard = board.globalDeck[random.randint(0,len(board.globalDeck))]
+            board.globalDeck.remove(dealtCard)
+            deck.append(dealtCard)
         listPlayers[i].setDeck(deck)
+        i+=1
+    board.resetGlobalDeck()
